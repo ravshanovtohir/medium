@@ -1,13 +1,21 @@
 import db from "../config/db.config.js"
 import sql from "../sql/sql.user.js"
 
-async function getUsers() {
-    const post = await db(sql.GET)
+async function getUsers({ page, limit }) {
+    const post = await db(
+        sql.GET,
+        (page - 1) * limit,
+        limit
+    )
     return post
 }
 
-async function getUsersWithPost() {
-    const post = await db(sql.GET_USER_WITH_POST)
+async function getUsersWithPost({ page, limit }) {
+    const post = await db(
+        sql.GET_USER_WITH_POST,
+        (page - 1) * limit,
+        limit
+    )
     return post
 }
 

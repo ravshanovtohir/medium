@@ -4,6 +4,7 @@ import { Router } from 'express'
 const router = Router()
 
 router.get('/api/users', user.GET)
-router.get('/auth/users/:userId')
+router.get('/api/users/:userId', user.GET)
+router.get('/api/usersWithPost/paginate', user.GET_USERS_WITH_POST)
 
 export default router

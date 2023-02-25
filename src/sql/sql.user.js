@@ -3,11 +3,21 @@ select
     user_id,
     user_name,
     user_email
-from users;
+from users
+inner join posts as p on u.user_id = p.post_author
+order by p.time_row DESC
+offset $1 limit $2
 `
 
+
+
 const GET_USER_BY_ID = `
-select * from users where user_id = $1;
+select
+    user_id,
+    user_name,
+    user_email
+from users 
+where user_id = $1;
 `
 
 const GET_USER_WITH_POST = `
@@ -21,6 +31,7 @@ from users as u
 inner join posts as p on u.user_id = p.post_author
 group by u.user_id, u.user_name, u.user_email, p.time_row
 order by p.time_row DESC
+offset $1 limit $2
 ;
 `
 

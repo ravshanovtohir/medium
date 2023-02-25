@@ -62,7 +62,10 @@ const GET = async (req, res, next) => {
     try {
         let { postId } = req.params
         let { page = 1, limit = 10 } = req.query
+
         postId = parseInt(postId)
+        page = parseInt(page)
+        limit = parseInt(limit)
 
         let posts = await modelPost.getPosts({ page, limit })
 
