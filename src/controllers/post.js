@@ -2,6 +2,7 @@ import error from '../utils/error.js'
 import modelPost from '../model/model.post.js'
 import modelUser from '../model/model.user.js'
 import jwt from '../utils/jwt.js'
+import timer from '../utils/index.js'
 
 const POST = async (req, res, next) => {
     try {
@@ -41,10 +42,15 @@ const POST = async (req, res, next) => {
 
         delete newPost.post_id
         delete newPost.user_id
+        delete newPost.time_row
 
-
-        console.log(newPost);
-
+        return res
+            .status(201)
+            .json({
+                status: 201,
+                message: 'The post successfully created!',
+                post: newPost
+            })
 
 
     } catch (err) {
@@ -52,6 +58,49 @@ const POST = async (req, res, next) => {
     }
 }
 
+const GET = async (req, res, next) => {
+    try {
+        let posts = await modelPost.getPosts()
+        let { postId } = req.params
+        postId = parseInt(postId)
+
+        if (postId) {
+
+            const post = await modelPost.getPost({ post_id: postId })
+
+            const a = await modelPost.updateTimeRow({ post_id: postId })
+
+            if (!post) {
+                return res
+                    .status(404)
+                    .json({
+                        status: 404,
+                        message: "The post not found with this post id"
+                    })
+            }
+
+            return res
+                .status(201)
+                .json({
+                    status: 200,
+                    post
+                })
+
+        }
+
+        return res
+            .status(201)
+            .json({
+                status: 200,
+                post: posts
+            })
+    } catch (err) {
+        throw new error.InternalServerError(err.message)
+    }
+
+}
+
 export default {
-    POST
+    POST,
+    GET
 }

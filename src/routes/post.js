@@ -4,8 +4,9 @@ import checkToken from '../middlewares/checkToken.js'
 
 const router = Router()
 
-
-router.get('/post/add', checkToken.checkToken, post.POST)
+router.get('/api/posts', checkToken.checkToken, post.GET)
+router.get('/api/posts/:postId', checkToken.checkToken, post.GET)
+router.post('/post/add', checkToken.checkToken, post.POST)
 // router.post('/auth/login', auth.LOGIN)
 
 export default router

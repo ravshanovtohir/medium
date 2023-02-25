@@ -1,5 +1,9 @@
 const GET = `
-    select * from users;
+select
+    user_id,
+    user_name,
+    user_email
+from users;
 `
 
 const GET_USER_BY_ID = `

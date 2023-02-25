@@ -1,5 +1,7 @@
 import "./config/index.config.js"
 import express from 'express'
+import responseTime from './utils/index.js'
+
 // import path from 'path'
 // import database from "./config/db.config.js"
 
@@ -15,16 +17,18 @@ app.use(express.json())
 
 app.get('/', (req, res) => res.send("Hello"))
 
+
+
 // routes
 import authRouter from './routes/auth.js'
-import modelPost from './routes/post.js'
+import postRouter from './routes/post.js'
 // import authRouter from './routes/auth.js'
 // import bookRouter from './routes/books.js'
 // import categoryRouter from "./routes/category.js"
 
 !async function () {
     try {
-        app.use(modelPost)
+        app.use(postRouter)
         app.use(authRouter)
     } catch (error) {
         console.log(error)
