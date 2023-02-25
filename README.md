@@ -21,11 +21,11 @@ $ npm run start
 ```
 1. Edit .env file on your project. Here is multiple environment variable that need to be setup:
 
-* PG_HOST
-* PG_PORT
-* PG_USER
-* PG_PASSWORD
-* PG_DATABASE
+*   PG_HOST
+*   PG_PORT
+*   PG_USER
+*   PG_PASSWORD
+*   PG_DATABASE
 
-* JWT_SECRET
+*   JWT_SECRET
 ```
