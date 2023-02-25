@@ -28,15 +28,14 @@ $ npm run start
 *   PG_DATABASE
 
 *   JWT_SECRET
-*   SECRET_WORD
 ```
 
 # Routes
+### Register(Sign Up)
 Route: `/auth/register` Method: `POST` 
 
 Request:
 ```
-json
 {
     "user_name": "Alfred1231",
     "user_email": "alfred9959@gmail.com",
@@ -45,7 +44,6 @@ json
 ```
 Response:
 ```
-json
 {
     "status": 201,
     "message": "The user successfully registired!",
@@ -57,5 +55,25 @@ json
     }
 }
 ```
-
-
+### Login
+Route: `/auth/login` Method: `POST` 
+Request:
+```
+{
+    "user_email": "alfred9959@gmail.com",
+    "user_password": "qwer4321"
+}
+```
+Response:
+```
+{
+    "status": 201,
+    "message": "The user successfully logged in!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2VudCI6IlBvc3RtYW5SdW50aW1lLzcuMjkuMiIsImlwIjoiOjoxIiwidXNlcl9pZCI6NiwiaWF0IjoxNjc3MzUxNzQ0fQ.3LduAogl22RmhFon33CxrVOLWfnBdqYhnr2kAFZLXbo",
+    "user": {
+        "user_id": 6,
+        "user_name": "Alfred1231",
+        "user_email": "alfred9959@gmail.com"
+    }
+}
+```
