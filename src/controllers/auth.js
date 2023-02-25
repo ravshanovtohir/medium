@@ -7,15 +7,20 @@ import jwt from '../utils/jwt.js';
 const REGISTER = async (req, res, next) => {
     try {
 
-        let { user_email, user_password } = req.body
+        let { user_name, user_email, user_password } = req.body
         let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
         const agent = req.headers['user-agent']
 
         user_email = user_email.trim()
         user_password = user_password.trim()
+        user_name = user_name.trim()
 
-
+        if (!user_name) {
+            return next(
+                new error.ValidationError(400, "User name is required")
+            )
+        }
 
         if (!user_email) {
             return next(
@@ -29,6 +34,7 @@ const REGISTER = async (req, res, next) => {
             )
         }
 
+
         if (user_password.length < 8) {
             return next(
                 new error.ValidationError(400, "Minimum password length must be 8")
@@ -41,13 +47,31 @@ const REGISTER = async (req, res, next) => {
             )
         }
 
+        if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/).test(user_password)) {
+            return next(
+                new error.ValidationError(400, "Minimum eight characters, at least one letter and one number")
+            )
+        }
         if (!user_email.match(emailRegEx)) {
             return next(
                 new error.ValidationError(400, "Invalid email address")
             )
         }
 
+        if (user_name.length < 6) {
+            return next(
+                new error.ValidationError(400, "Minimum username length must be 6")
+            )
+        }
+
+        if (user_name.length > 35) {
+            return next(
+                new error.ValidationError(400, "Maximux username length must be 35")
+            )
+        }
+
         let checkEmail = await modelAuth.checkEmail({ user_email })
+        let checkUserName = await modelAuth.checkUserName({ user_name })
 
         if (checkEmail) {
             return next(
@@ -55,7 +79,13 @@ const REGISTER = async (req, res, next) => {
             )
         }
 
-        let newUser = await modelAuth.register({ user_email, user_password: sha256(user_password) })
+        if (checkUserName) {
+            return next(
+                new error.ValidationError(400, "This username already used.")
+            )
+        }
+
+        let newUser = await modelAuth.register({ user_name, user_email, user_password: sha256(user_password) })
 
         delete newUser.user_password
 

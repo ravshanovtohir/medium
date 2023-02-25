@@ -15,6 +15,7 @@ create database medium;
 drop table if exists users;
 create table users (
     user_id serial not null primary key,
+    user_name varchar(64) not null unique,
     user_email varchar(64) not null unique,
     user_password varchar(255) not null
 );

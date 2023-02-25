@@ -1,8 +1,8 @@
 import db from "../config/db.config.js"
 import sql from "../sql/sql.auth.js"
 
-async function register({ user_email, user_password }) {
-    const [user] = await db(sql.REGISTER, user_email, user_password)
+async function register({ user_name, user_email, user_password }) {
+    const [user] = await db(sql.REGISTER, user_name, user_email, user_password)
     return user
 }
 
@@ -16,8 +16,14 @@ async function checkEmail({ user_email }) {
     return email[0]
 }
 
+async function checkUserName({ user_name }) {
+    const name = await db(sql.CHECK_USER_NAME, user_name)
+    return name[0]
+}
+
 export default {
     register,
     login,
-    checkEmail
+    checkEmail,
+    checkUserName
 }

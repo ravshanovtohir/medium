@@ -1,9 +1,10 @@
-import { verify } from './jwt.js'
-import error from './error.js'
+import jwt from '../utils/jwt.js'
+import error from '../utils/error.js'
+import modelUser from '../model/model.user.js'
 
 //checkToken
 
-const checkToken = (req, res, next) => {
+const checkToken = async (req, res, next) => {
     try {
         const { token } = req.headers
 
@@ -11,20 +12,19 @@ const checkToken = (req, res, next) => {
             throw new error.AuthorizationError(401, "user is not authorized!")
         }
 
-        const { userId, agent } = verify(token)
+        const { user_id, agent } = jwt.verify(token)
 
         if (!(req.headers['user-agent'] == agent)) {
             throw new error.AuthorizationError(401, "token is invalid!")
         }
 
-        // const users = req.readFile('users')
-        // let user = users.find(user => user.userId == userId)
 
-        // if (!user) {
-        //     throw new ClientError(401, "The token is invalid!")
-        // }
+        const users = await modelUser.getUsers()
+        let user = users.find(user => user.user_id == user_id)
 
-        // req.userId = userId
+        if (!user) {
+            throw new error.AuthorizationError(401, "The token is invalid!")
+        }
 
         return next()
     } catch (error) {
