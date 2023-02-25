@@ -77,3 +77,26 @@ Response:
     }
 }
 ```
+
+### Post
+Route: `/post/add` Method: `POST` 
+Request:
+```
+{
+    "post_title": "Sport new nimadirda",
+    "post_content": "Bozor iqtisodiyotida turli mulkchilikka asoslangan minglab korxonalar faoliyatini tasavvurga sig’dirish qiyin emas. Korxonalar faoliyatini u yoki bu darajadagi boshqaruvini tashkil etish, shu korxona rahbarining boshqaruv qobiliyatiga bog’liq. Uning qobiliyati esa menejment sohasidagi bilimlarni qanchalik darajada egallanganligi bilan o’lchanadi. Shu nuqtai nazardan menejment so’zi bizning hayotimizda bozor iqtisodiyoti bilan bog’liq kirib kelgan so’zlar qatoridan joy oldi."
+}
+```
+Response:
+```
+{
+    "status": 201,
+    "message": "The post successfully created!",
+    "post": {
+        "post_title": "Sport new nimadirda",
+        "post_content": "Bozor iqtisodiyotida turli mulkchilikka asoslangan minglab korxonalar faoliyatini tasavvurga sig’dirish qiyin emas. Korxonalar faoliyatini u yoki bu darajadagi boshqaruvini tashkil etish, shu korxona rahbarining boshqaruv qobiliyatiga bog’liq. Uning qobiliyati esa menejment sohasidagi bilimlarni qanchalik darajada egallanganligi bilan o’lchanadi. Shu nuqtai nazardan menejment so’zi bizning hayotimizda bozor iqtisodiyoti bilan bog’liq kirib kelgan so’zlar qatoridan joy oldi.",
+        "post_author": "Alfred123"
+    }
+}
+```
+
