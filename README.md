@@ -100,3 +100,57 @@ Response:
 }
 ```
 
+### Get Posts
+Route: `/api/posts` Method: `GET` 
+Response:
+```
+{
+    "status": 200,
+    "post": [
+        {
+            "post_id": 6,
+            "post_title": "Sport new nimadirda",
+            "post_content": "Bozor iqtisodiyotida turli mulkchilikka asoslangan minglab korxonalar faoliyatini tasavvurga sig’dirish qiyin emas. Korxonalar faoliyatini u yoki bu darajadagi boshqaruvini tashkil etish, shu korxona rahbarining boshqaruv qobiliyatiga bog’liq. Uning qobiliyati esa menejment sohasidagi bilimlarni qanchalik darajada egallanganligi bilan o’lchanadi. Shu nuqtai nazardan menejment so’zi bizning hayotimizda bozor iqtisodiyoti bilan bog’liq kirib kelgan so’zlar qatoridan joy oldi.",
+            "user": {
+                "user_id": 5,
+                "user_name": "Alfred123",
+                "user_email": "alfred999@gmail.com"
+            }
+        },
+        {
+            "post_id": 3,
+            "post_title": "Baqaybek",
+            "post_content": "70000",
+            "user": {
+                "user_id": 1,
+                "user_name": "Olimbek",
+                "user_email": "olma@gmail.com"
+            }
+        },
+     ]
+  }
+```
+
+### Get Posts By Id
+Route: `/api/posts/1` Method: `GET` 
+Response:
+```
+{
+    "status": 200,
+    "post": {
+        "post_id": 1,
+        "post_title": "Haydarbek",
+        "post_content": "70000",
+        "user": {
+            "user_id": 1,
+            "user_name": "Olimbek",
+            "user_email": "olma@gmail.com"
+        }
+    }
+}
+```
+
+### There is also pagination here
+Route: `/api/posts/paginate?page=1&limit=10` Method: `GET` 
+
+
