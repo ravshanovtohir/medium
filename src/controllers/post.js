@@ -9,7 +9,7 @@ const POST = async (req, res, next) => {
         let { post_title, post_content } = req.body
         let { user_id } = jwt.verify(req.headers.token)
 
-        console.log();
+
 
         if (!post_title) {
             return next(
@@ -60,9 +60,11 @@ const POST = async (req, res, next) => {
 
 const GET = async (req, res, next) => {
     try {
-        let posts = await modelPost.getPosts()
         let { postId } = req.params
+        let { page = 1, limit = 10 } = req.query
         postId = parseInt(postId)
+
+        let posts = await modelPost.getPosts({ page, limit })
 
         if (postId) {
 

@@ -19,6 +19,7 @@ from posts as p
 left join users as u on p.post_author = u.user_id
 group by u.user_id, post_id, post_title, post_content, p.time_row
 order by p.time_row DESC
+offset $1    limit $2
 ;
 `
 

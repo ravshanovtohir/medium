@@ -6,7 +6,7 @@ MEDIUM (USERS and POSTS)
 
 2. API --->
 
-authentication with jwt 
+authentication with jwt ++
 
 POSTS --->
     GET POSTS(pagination)

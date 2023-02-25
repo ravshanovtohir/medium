@@ -6,8 +6,12 @@ async function addPost({ post_title, post_content, user_id }) {
     return post
 }
 
-async function getPosts() {
-    const post = await db(sql.GET)
+async function getPosts({ page, limit }) {
+    const post = await db(
+        sql.GET,
+        (page - 1) * limit,
+        limit
+    )
     return post
 }
 

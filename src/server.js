@@ -22,6 +22,7 @@ app.get('/', (req, res) => res.send("Hello"))
 // routes
 import authRouter from './routes/auth.js'
 import postRouter from './routes/post.js'
+import userRouter from './routes/user.js'
 // import authRouter from './routes/auth.js'
 // import bookRouter from './routes/books.js'
 // import categoryRouter from "./routes/category.js"
@@ -30,6 +31,7 @@ import postRouter from './routes/post.js'
     try {
         app.use(postRouter)
         app.use(authRouter)
+        app.use(userRouter)
     } catch (error) {
         console.log(error)
     }
