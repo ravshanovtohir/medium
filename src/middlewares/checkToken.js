@@ -18,14 +18,6 @@ const checkToken = async (req, res, next) => {
             throw new error.AuthorizationError(401, "token is invalid!")
         }
 
-
-        const users = await modelUser.getUsers()
-        let user = users.find(user => user.user_id == user_id)
-
-        if (!user) {
-            throw new error.AuthorizationError(401, "The token is invalid!")
-        }
-
         return next()
     } catch (error) {
         return next(error)

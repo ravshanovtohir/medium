@@ -1,11 +1,6 @@
 import "./config/index.config.js"
 import express from 'express'
-import responseTime from './utils/index.js'
-
-// import path from 'path'
-// import database from "./config/db.config.js"
-
-//other files
+import fs from "fs"
 
 
 // other datas
@@ -15,6 +10,7 @@ const app = express()
 //middlewares
 app.use(express.json())
 
+
 app.get('/', (req, res) => res.send("Hello"))
 
 
@@ -23,9 +19,6 @@ app.get('/', (req, res) => res.send("Hello"))
 import authRouter from './routes/auth.js'
 import postRouter from './routes/post.js'
 import userRouter from './routes/user.js'
-// import authRouter from './routes/auth.js'
-// import bookRouter from './routes/books.js'
-// import categoryRouter from "./routes/category.js"
 
 !async function () {
     try {
@@ -35,7 +28,11 @@ import userRouter from './routes/user.js'
     } catch (error) {
         console.log(error)
     }
+
     app.use((error, req, res, next) => {
+
+        fs.appendFileSync('./log.txt', `${req.url}__${req.method}__${Date.now()}__${error.name}__${error.message}\n`)
+
         if (error.name == 'ValidationError') {
             return res.status(error.status).json({
                 status: error.status,
@@ -56,7 +53,6 @@ import userRouter from './routes/user.js'
             })
         }
 
-        fs.appendFileSync('./log.txt', `${req.url}__${req.method}__${Date.now()}__${error.name}__${error.message}\n`)
 
         return res.status(error.status).json({
             status: error.status,

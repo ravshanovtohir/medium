@@ -2,13 +2,12 @@ import error from '../utils/error.js'
 import modelPost from '../model/model.post.js'
 import modelUser from '../model/model.user.js'
 import jwt from '../utils/jwt.js'
-import timer from '../utils/index.js'
 
 const POST = async (req, res, next) => {
     try {
+        console.log(1);
         let { post_title, post_content } = req.body
         let { user_id } = jwt.verify(req.headers.token)
-
 
 
         if (!post_title) {
@@ -54,7 +53,7 @@ const POST = async (req, res, next) => {
 
 
     } catch (err) {
-        throw new error.InternalServerError(err.message)
+        throw new error.InternalServerError(error.message)
     }
 }
 

@@ -1,10 +1,10 @@
 const GET = `
 select
-    user_id,
-    user_name,
-    user_email
-from users
-inner join posts as p on u.user_id = p.post_author
+    u.user_id,
+    u.user_name,
+    u.user_email
+from users as u
+left join posts as p on u.user_id = p.post_author
 order by p.time_row DESC
 offset $1 limit $2
 `
