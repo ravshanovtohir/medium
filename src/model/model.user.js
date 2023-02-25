@@ -6,7 +6,13 @@ async function getUsers() {
     return post
 }
 
+async function getUser({ user_id }) {
+    const [user] = await db(sql.GET_USER_BY_ID, user_id)
+    return user
+}
+
 
 export default {
-    getUsers
+    getUsers,
+    getUser
 }

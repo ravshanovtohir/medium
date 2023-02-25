@@ -1,5 +1,6 @@
 import error from '../utils/error.js'
 import modelPost from '../model/model.post.js'
+import modelUser from '../model/model.user.js'
 import jwt from '../utils/jwt.js'
 
 const POST = async (req, res, next) => {
@@ -34,10 +35,16 @@ const POST = async (req, res, next) => {
         }
 
         let newPost = await modelPost.addPost({ post_title, post_content, user_id })
+        let user = await modelUser.getUser({ user_id })
+
+        newPost.post_author = user.user_name
 
         delete newPost.post_id
         delete newPost.user_id
+
+
         console.log(newPost);
+
 
 
     } catch (err) {
