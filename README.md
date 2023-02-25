@@ -30,3 +30,32 @@ $ npm run start
 *   JWT_SECRET
 *   SECRET_WORD
 ```
+
+# Routes
+Route: `/auth/register` Method: `POST` 
+
+Request:
+```
+json
+{
+    "user_name": "Alfred1231",
+    "user_email": "alfred9959@gmail.com",
+    "user_password": "qwer4321"
+}
+```
+Response:
+```
+json
+{
+    "status": 201,
+    "message": "The user successfully registired!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2VudCI6IlBvc3RtYW5SdW50aW1lLzcuMjkuMiIsImlwIjoiOjoxIiwidXNlcl9pZCI6NiwiaWF0IjoxNjc3MzUxMzk2fQ.oEp5NDlrVJIezetuOxK8TsMmtNGXVntgbQLzQ7Op6po",
+    "user": {
+        "user_id": 6,
+        "user_name": "Alfred1231",
+        "user_email": "alfred9959@gmail.com"
+    }
+}
+```
+
+
