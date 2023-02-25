@@ -1,0 +1,21 @@
+MEDIUM (USERS and POSTS)
+
+---------------
+
+1. Data Modeling
+
+2. API --->
+
+authentication with jwt 
+
+POSTS --->
+    GET POSTS(pagination)
+    GET POSTS by ID
+
+USERS ---> 
+    GET users and his posts ( + pagination)
+CATEGORIES
+    GET
+    POST
+    PUT
+    DELETE
