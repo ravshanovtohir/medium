@@ -28,4 +28,8 @@ $ npm run start
 *   PG_DATABASE
 
 *   JWT_SECRET
+
+*   PG_CONNECTION_URL
+*   PORT
+*   SECRET_WORD
 ```
