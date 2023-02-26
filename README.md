@@ -12,7 +12,7 @@ npm install
 # Running the app
 ```
 # development
-$ npm run start
+$ npm run start:dev
 ```
 
 # Environment
